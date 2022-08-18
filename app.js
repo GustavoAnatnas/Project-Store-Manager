@@ -17,6 +17,8 @@ app.post('/products', middlewares.addProductValidation, productsControllers.crea
 app.put('/products/:id', middlewares.addProductValidation,
   idValidation.idValidation, productsControllers.updateProduct);
 
+app.delete('/products/:id', idValidation.idValidation, productsControllers.deleteProduct);
+
 app.get('/sales', salesControllers.getAll);
 
 app.get('/sales/:id', salesControllers.getById);

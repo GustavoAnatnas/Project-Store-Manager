@@ -27,9 +27,16 @@ const updateProduct = async (req, res) => {
   res.status(code).json(product);
 };
 
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  await productsServices.deleteProduct(id);
+  res.status(204).send();
+};
+
 module.exports = {
   getAll,
   getById,
   createNewProduct,
   updateProduct,
+  deleteProduct,
 };
