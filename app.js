@@ -2,6 +2,7 @@ const express = require('express');
 const productsControllers = require('./controllers/productsControllers');
 const salesControllers = require('./controllers/salesControllers');
 const middlewares = require('./middlewares/addProductValidation');
+const idValidation = require('./middlewares/idValidation');
 
 const app = express();
 
@@ -12,6 +13,9 @@ app.get('/products', productsControllers.getAll);
 app.get('/products/:id', productsControllers.getById);
 
 app.post('/products', middlewares.addProductValidation, productsControllers.createNewProduct);
+
+app.put('/products/:id', middlewares.addProductValidation,
+  idValidation.idValidation, productsControllers.updateProduct);
 
 app.get('/sales', salesControllers.getAll);
 
