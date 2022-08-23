@@ -76,5 +76,24 @@ describe('ProductModel', () => {
 
       expect(resultado).to.be.not.empty;
     })
+    it('Cria um produto', async () => {
+      sinon.stub(connection, 'execute').resolves([{
+        "id": 1,
+        "name": "Martelo de Thor",
+}]);
+      const resultado = await ProductModel.createNewProduct();
+      expect(resultado).to.be.not.empty;
+    })
+
+    it('Atualiza um produto', async () => {
+      sinon.stub(connection, 'execute').resolves();
+      const resultado = await ProductModel.updateProduct( 1, "Martelo do Thor");
+      expect(resultado.name).to.be.equal('Martelo do Thor');
+    })
+
+    it('Deleta um produto', async () => {
+      sinon.stub(connection, 'execute').resolves();
+      await ProductModel.deleteProduct(1);
   })
+  });
 });
